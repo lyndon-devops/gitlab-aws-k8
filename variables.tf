@@ -6,6 +6,11 @@ locals {
   }
 }
 
+variable "domain_root" {
+  type    = string
+  default = "headhuntr.io"
+}
+
 variable "region" {
   type    = string
   default = "us-east-1"
