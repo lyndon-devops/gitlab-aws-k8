@@ -35,6 +35,7 @@ module "eks" {
     }
   ]
 
-  worker_create_security_group  = false
-  cluster_create_security_group = false
+  worker_additional_security_group_ids = [module.vpc.default_security_group_id]
+  worker_create_security_group         = false
+  cluster_create_security_group        = false
 }
