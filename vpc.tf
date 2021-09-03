@@ -15,9 +15,5 @@ module "vpc" {
   enable_nat_gateway = true
   enable_vpn_gateway = false
 
-  tags = {
-    Application = var.application_name
-    Terraform   = "true"
-    Environment = "dev"
-  }
+  tags = local.common_tags
 }
