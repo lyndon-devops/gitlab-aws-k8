@@ -1,20 +1,21 @@
 resource "aws_rds_cluster" "main" {
   cluster_identifier = "${var.application_name}-aurora-cluster"
 
-  engine_mode    = "serverless"
+  //we cant use serverless at the moment due to postgres version requirements of gitlab
+  engine_mode    = "provisioned"
   engine         = "aurora-postgresql"
-  engine_version = "10.14"
+  engine_version = "13.3"
   port           = 5432
 
   enable_http_endpoint = true
 
-  scaling_configuration {
-    auto_pause               = true
-    max_capacity             = 64
-    min_capacity             = 2
-    seconds_until_auto_pause = 1500
-    timeout_action           = "ForceApplyCapacityChange"
-  }
+//  scaling_configuration {
+//    auto_pause               = true
+//    max_capacity             = 64
+//    min_capacity             = 2
+//    seconds_until_auto_pause = 1500
+//    timeout_action           = "ForceApplyCapacityChange"
+//  }
 
   database_name   = "postgres"
   master_username = "postgres"
